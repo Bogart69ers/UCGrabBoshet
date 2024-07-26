@@ -1,0 +1,20 @@
+7/27/2024 3:17:44 AM - System.Exception: An error occurred while updating the entries. See the inner exception for details.
+   at UCGrab.Controllers.HomeController.AddCart(Int32 prodId, Int32 qty) in C:\Users\Marvin\Documents\Visual Studio 2015\Projects\UCGrab\UCGrab\Controllers\HomeController.cs:line 391
+7/27/2024 3:32:05 AM - System.Exception: An error occurred while updating the entries. See the inner exception for details.
+   at UCGrab.Controllers.HomeController.AddCart(Int32 prodId, Int32 qty) in C:\Users\Marvin\Documents\Visual Studio 2015\Projects\UCGrab\UCGrab\Controllers\HomeController.cs:line 391
+7/27/2024 3:34:30 AM - System.Data.ConstraintException: The 'shipped_date' property on 'Order' could not be set to a 'null' value. You must set this property to a non-null value of type 'DateTime'. 
+   at System.Data.Common.Internal.Materialization.Shaper.ErrorHandlingValueReader`1.GetValue(DbDataReader reader, Int32 ordinal)
+   at lambda_method(Closure , Shaper )
+   at System.Data.Common.Internal.Materialization.Shaper.HandleEntityAppendOnly[TEntity](Func`2 constructEntityDelegate, EntityKey entityKey, EntitySet entitySet)
+   at lambda_method(Closure , Shaper )
+   at System.Data.Common.Internal.Materialization.Coordinator`1.ReadNextElement(Shaper shaper)
+   at System.Data.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at System.Data.Objects.ELinq.ObjectQueryProvider.<>c__11`1.<GetElementFunction>b__11_1(IEnumerable`1 sequence)
+   at System.Data.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   at System.Data.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[S](Expression expression)
+   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source)
+   at UCGrab.Repository.OrderManager.GetOrCreateOrderByUserId(String userId, Product prod, String& err) in C:\Users\Marvin\Documents\Visual Studio 2015\Projects\UCGrab\UCGrab\Repository\OrderManager.cs:line 34
+   at UCGrab.Repository.OrderManager.AddCart(String userId, Int32 productId, Int32 qty, String& error) in C:\Users\Marvin\Documents\Visual Studio 2015\Projects\UCGrab\UCGrab\Repository\OrderManager.cs:line 60
+   at UCGrab.Controllers.HomeController.AddCart(Int32 prodId, Int32 qty) in C:\Users\Marvin\Documents\Visual Studio 2015\Projects\UCGrab\UCGrab\Controllers\HomeController.cs:line 389

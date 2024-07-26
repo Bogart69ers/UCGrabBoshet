@@ -1,0 +1,93 @@
+﻿@model UCGrab.Database.Store
+
+@{
+    ViewBag.Title = "MyStore";
+    Layout = "~/Views/Shared/ShopPageLayout.cshtml";
+}
+
+<style>
+    .editprofile {
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #ffd800;
+        font-weight: 100;
+    }
+
+    .edit-store-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .store-details {
+        position: relative;
+        padding-top: 50px; /* To accommodate the button */
+    }
+</style>
+
+<!-- Store Information Start -->
+<div class="container-fluid">
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4">
+        <span class="bg-secondary pr-3">Store Information</span>
+    </h2>
+    <div class="row px-xl-5">
+        <!-- Store Details Start -->
+        <div class="col-lg-12 mb-5 d-flex">
+            @if (!String.IsNullOrEmpty(TempData["Message"] as String))
+            {
+                <div class="alert alert-success" role="alert">@TempData["Message"]</div>
+            }
+            <div class="bg-primary p-4" style="border-radius: 2px; text-align: center; width: 300px;">
+                <h4 style="color: white;">Store Logo</h4>
+                @{
+                    string profileImage = string.IsNullOrEmpty(Model.Image_Store.FirstOrDefault()?.image_file) ? Url.Content("~/UploadedFiles/profile.jpg") : Url.Content("~/UploadedFiles/" + Model.Image_Store.FirstOrDefault()?.image_file);
+                }
+                <img src="@profileImage" alt="Avatar" class="img-fluid" style="border-radius: 5px; margin-bottom: 15px; width:290px" />
+                <form id="profilePictureForm" enctype="multipart/form-data"></form>
+            </div>
+            <div class="store-details bg-light p-4 mb-4 shadow-sm rounded" style="flex: 2;">
+                <h5 class="card-title"><i class="fas fa-store mr-2"></i>Store Details</h5>
+                <div class="mb-3">
+                    <label for="storeName" class="form-label">Store Name</label>
+                    <h4 id="storeName" class="font-weight-normal">@Html.DisplayFor(model => model.store_name)</h4>
+                </div>
+                <div class="mb-3">
+                    <label for="storeAddress" class="form-label">Store Address</label>
+                    <h4 id="storeAddress" class="font-weight-normal">@Html.DisplayFor(model => model.store_address)</h4>
+                </div>
+                <div class="mb-3">
+                    <label for="storeEmail" class="form-label">Email</label>
+                    <h4 id="storeEmail" class="font-weight-normal">@Html.DisplayFor(model => model.email)</h4>
+                </div>
+                <div class="mb-3">
+                    <label for="storePhone" class="form-label">Phone</label>
+                    <h4 id="storePhone" class="font-weight-normal">@Html.DisplayFor(model => model.phone)</h4>
+                </div>
+                <div class="mb-3">
+                    <label for="storePhone" class="form-label">Operating Hours</label>
+                    <h4 id="storehours" class="font-weight-normal">@Html.DisplayFor(model => model.operating_hours)</h4>
+                </div>
+                <div class="mb-3">
+                    <label for="storePhone" class="form-label">Description</label>
+                    <h4 id="storehours" class="font-weight-normal">@Html.DisplayFor(model => model.store_description)</h4>
+                </div>
+                <div class="edit-store-button">
+                    <a class="btn btn-primary py-2 px-4" href="~/Shop/ChangeLogo">Edit Store</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Store Information End -->
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="/Assets/Shop/lib/easing/easing.min.js"></script>
+<script src="/Assets/Shop/lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Contact Javascript File -->
+<script src="/Assets/Shop/mail/jqBootstrapValidation.min.js"></script>
+<script src="/Assets/Shop/mail/contact.js"></script>
+
+<!-- Template Javascript -->
+<script src="/Assets/Shop/js/main.js"></script>

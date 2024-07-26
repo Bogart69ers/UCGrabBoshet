@@ -1,0 +1,633 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E625AD28-124E-4D9D-82B1-D087CC5161C0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UCGrab</RootNamespace>
+    <AssemblyName>UCGrab</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <PublishDatabases>true</PublishDatabases>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.0.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.0.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.0.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.0.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.0.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.0.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\admin\css\tailwind.css" />
+    <Content Include="Assets\admin\css\tailwind.output.css" />
+    <Content Include="Assets\admin\img\create-account-office-dark.jpeg" />
+    <Content Include="Assets\admin\img\create-account-office.jpeg" />
+    <Content Include="Assets\admin\img\dashboard.png" />
+    <Content Include="Assets\admin\img\forgot-password-office-dark.jpeg" />
+    <Content Include="Assets\admin\img\forgot-password-office.jpeg" />
+    <Content Include="Assets\admin\img\github.svg" />
+    <Content Include="Assets\admin\img\login-office-dark.jpeg" />
+    <Content Include="Assets\admin\img\login-office.jpeg" />
+    <Content Include="Assets\admin\img\twitter.svg" />
+    <Content Include="Assets\admin\js\charts-bars.js" />
+    <Content Include="Assets\admin\js\charts-lines.js" />
+    <Content Include="Assets\admin\js\charts-pie.js" />
+    <Content Include="Assets\admin\js\focus-trap.js" />
+    <Content Include="Assets\admin\js\init-alpine.js" />
+    <Content Include="Assets\login\css\bootstrap.min.css" />
+    <Content Include="Assets\login\css\bootstrap\mixins\_border-radius.css" />
+    <Content Include="Assets\login\css\bootstrap\mixins\_screen-reader.css" />
+    <Content Include="Assets\login\css\bootstrap\mixins\_visibility.css" />
+    <Content Include="Assets\login\css\bootstrap\utilities\_stretched-link.css" />
+    <Content Include="Assets\login\css\bootstrap\_media.css" />
+    <Content Include="Assets\login\css\style.css" />
+    <Content Include="Assets\login\images\GrabUC.jpg" />
+    <Content Include="Assets\login\images\UCGrab.jpg" />
+    <Content Include="Assets\login\js\bootstrap.min.js" />
+    <Content Include="Assets\login\js\jquery.min.js" />
+    <Content Include="Assets\login\js\main.js" />
+    <Content Include="Assets\login\js\popper.js" />
+    <Content Include="Assets\PageNotFound\225203-P29OZD-286-min.png" />
+    <Content Include="Assets\PageNotFound\5-removebg-preview.png" />
+    <Content Include="Assets\PageNotFound\css-removebg-preview.png" />
+    <Content Include="Assets\PageNotFound\logo1-removebg-preview.png" />
+    <Content Include="Assets\Shop\css\bootstrap-grid.css" />
+    <Content Include="Assets\Shop\css\bootstrap-grid.min.css" />
+    <Content Include="Assets\Shop\css\bootstrap-reboot.css" />
+    <Content Include="Assets\Shop\css\bootstrap-reboot.min.css" />
+    <Content Include="Assets\Shop\css\bootstrap.css" />
+    <Content Include="Assets\Shop\css\bootstrap.min.css" />
+    <Content Include="Assets\Shop\css\style.css" />
+    <Content Include="Assets\Shop\css\style.min.css" />
+    <Content Include="Assets\Shop\img\acbooks.jpg" />
+    <Content Include="Assets\Shop\img\Breakfast.jpg" />
+    <Content Include="Assets\Shop\img\CarBooks.jpeg" />
+    <Content Include="Assets\Shop\img\catbooks.jpg" />
+    <Content Include="Assets\Shop\img\ccs.jpg" />
+    <Content Include="Assets\Shop\img\Choks.jpg" />
+    <Content Include="Assets\Shop\img\Coke.jpg" />
+    <Content Include="Assets\Shop\img\comstudies.png" />
+    <Content Include="Assets\Shop\img\crim.jpg" />
+    <Content Include="Assets\Shop\img\customs.jpg" />
+    <Content Include="Assets\Shop\img\DepartmentalShirts.jpg" />
+    <Content Include="Assets\Shop\img\Drinks.jpg" />
+    <Content Include="Assets\Shop\img\dunkin.png" />
+    <Content Include="Assets\Shop\img\foods&amp;bev.jpg" />
+    <Content Include="Assets\Shop\img\foodsdrinks.jpg" />
+    <Content Include="Assets\Shop\img\hmtm.jpg" />
+    <Content Include="Assets\Shop\img\lmcares.jpg" />
+    <Content Include="Assets\Shop\img\lmfocus.jpg" />
+    <Content Include="Assets\Shop\img\lmscholar.jpg" />
+    <Content Include="Assets\Shop\img\lmsh.jpg" />
+    <Content Include="Assets\Shop\img\logo1.jpg" />
+    <Content Include="Assets\Shop\img\LogoUC.jpg" />
+    <Content Include="Assets\Shop\img\Lunch.jpg" />
+    <Content Include="Assets\Shop\img\maritime.jpg" />
+    <Content Include="Assets\Shop\img\nursing.jpg" />
+    <Content Include="Assets\Shop\img\offer-1.jpg" />
+    <Content Include="Assets\Shop\img\offer-2.jpg" />
+    <Content Include="Assets\Shop\img\payments.png" />
+    <Content Include="Database\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Database\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Logs\errorlog.txt" />
+    <Content Include="UploadedFiles\profile.jpg" />
+    <Content Include="Assets\Shop\img\psits.jpg" />
+    <Content Include="Assets\Shop\img\seniorHS.jpg" />
+    <Content Include="Assets\Shop\img\Snacks.jpg" />
+    <Content Include="Assets\Shop\img\teacher.jpg" />
+    <Content Include="Assets\Shop\img\uclm.jpg" />
+    <Content Include="Assets\Shop\img\uniforms.jpg" />
+    <Content Include="Assets\Shop\img\uniformUC.jpg" />
+    <Content Include="Assets\Shop\img\user.jpg" />
+    <Content Include="Assets\Shop\js\main.js" />
+    <Content Include="Assets\Shop\lib\animate\animate.min.css" />
+    <Content Include="Assets\Shop\lib\easing\easing.js" />
+    <Content Include="Assets\Shop\lib\easing\easing.min.js" />
+    <Content Include="Assets\Shop\lib\owlcarousel\assets\ajax-loader.gif" />
+    <Content Include="Assets\Shop\lib\owlcarousel\assets\owl.carousel.css" />
+    <Content Include="Assets\Shop\lib\owlcarousel\assets\owl.carousel.min.css" />
+    <Content Include="Assets\Shop\lib\owlcarousel\assets\owl.theme.default.css" />
+    <Content Include="Assets\Shop\lib\owlcarousel\assets\owl.theme.default.min.css" />
+    <Content Include="Assets\Shop\lib\owlcarousel\assets\owl.theme.green.css" />
+    <Content Include="Assets\Shop\lib\owlcarousel\assets\owl.theme.green.min.css" />
+    <Content Include="Assets\Shop\lib\owlcarousel\assets\owl.video.play.png" />
+    <Content Include="Assets\Shop\lib\owlcarousel\owl.carousel.js" />
+    <Content Include="Assets\Shop\lib\owlcarousel\owl.carousel.min.js" />
+    <Content Include="Assets\Shop\mail\contact.js" />
+    <Content Include="Assets\Shop\mail\jqBootstrapValidation.min.js" />
+    <Content Include="Global.asax" />
+    <Content Include="scripts\ai.0.22.9-build00167.js" />
+    <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Contracts\IBaseRepository.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ShopController.cs" />
+    <Compile Include="Database\Category.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ContactUs.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Image.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Image_Product.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Image_Store.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Order.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Order_Detail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Product.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Stock.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Store.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\User_Accounts.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\User_Information.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\User_Role.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\vw_Role.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\Response.cs" />
+    <Compile Include="Models\UserLogged.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\BaseRepository.cs" />
+    <Compile Include="Repository\CategoryManager.cs" />
+    <Compile Include="Repository\ImageManager.cs" />
+    <Compile Include="Repository\MailManager.cs" />
+    <Compile Include="Repository\OrderManager.cs" />
+    <Compile Include="Repository\ProductManager.cs" />
+    <Compile Include="Repository\StoreManager.cs" />
+    <Compile Include="Repository\UserManager.cs" />
+    <Compile Include="Utils\MyRole.cs" />
+    <Compile Include="Utils\Utilities.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Shared\AdminPageLayout.cshtml" />
+    <Content Include="Views\Shared\ShopPageLayout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shop\Index.cshtml" />
+    <Content Include="Assets\login\fonts\.DS_Store" />
+    <Content Include="Assets\login\scss\.DS_Store" />
+    <Content Include="Assets\login\scss\style.scss" />
+    <Content Include="Assets\login\scss\bootstrap\.DS_Store" />
+    <Content Include="Assets\login\scss\bootstrap\bootstrap-grid.scss" />
+    <Content Include="Assets\login\scss\bootstrap\bootstrap-reboot.scss" />
+    <Content Include="Assets\login\scss\bootstrap\bootstrap.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_alert.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_badge.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_breadcrumb.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_button-group.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_buttons.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_card.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_carousel.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_close.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_code.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_custom-forms.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_dropdown.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_forms.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_functions.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_grid.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_images.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_input-group.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_jumbotron.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_list-group.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_media.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_mixins.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_modal.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_nav.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_navbar.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_pagination.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_popover.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_print.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_progress.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_reboot.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_root.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_spinners.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_tables.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_toasts.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_tooltip.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_transitions.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_type.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_utilities.scss" />
+    <Content Include="Assets\login\scss\bootstrap\_variables.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_alert.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_background-variant.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_badge.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_border-radius.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_box-shadow.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_breakpoints.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_buttons.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_caret.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_clearfix.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_deprecate.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_float.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_forms.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_gradients.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_grid-framework.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_grid.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_hover.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_image.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_list-group.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_lists.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_nav-divider.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_pagination.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_reset-text.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_resize.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_screen-reader.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_size.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_table-row.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_text-emphasis.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_text-hide.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_text-truncate.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_transition.scss" />
+    <Content Include="Assets\login\scss\bootstrap\mixins\_visibility.scss" />
+    <Content Include="Assets\login\scss\bootstrap\utilities\_align.scss" />
+    <Content Include="Assets\login\scss\bootstrap\utilities\_background.scss" />
+    <Content Include="Assets\login\scss\bootstrap\utilities\_borders.scss" />
+    <Content Include="Assets\login\scss\bootstrap\utilities\_clearfix.scss" />
+    <Content Include="Assets\login\scss\bootstrap\utilities\_display.scss" />
+    <Content Include="Assets\login\scss\bootstrap\utilities\_embed.scss" />
+    <Content Include="Assets\login\scss\bootstrap\utilities\_flex.scss" />
+    <Content Include="Assets\login\scss\bootstrap\utilities\_float.scss" />
+    <Content Include="Assets\login\scss\bootstrap\utilities\_overflow.scss" />
+    <Content Include="Assets\login\scss\bootstrap\utilities\_position.scss" />
+    <Content Include="Assets\login\scss\bootstrap\utilities\_screenreaders.scss" />
+    <Content Include="Assets\login\scss\bootstrap\utilities\_shadows.scss" />
+    <Content Include="Assets\login\scss\bootstrap\utilities\_sizing.scss" />
+    <Content Include="Assets\login\scss\bootstrap\utilities\_spacing.scss" />
+    <Content Include="Assets\login\scss\bootstrap\utilities\_stretched-link.scss" />
+    <Content Include="Assets\login\scss\bootstrap\utilities\_text.scss" />
+    <Content Include="Assets\login\scss\bootstrap\utilities\_visibility.scss" />
+    <Content Include="Assets\login\scss\bootstrap\vendor\_rfs.scss" />
+    <Content Include="Assets\login\css\.DS_Store" />
+    <Content Include="Assets\login\css\bootstrap\.DS_Store" />
+    <Content Include="Assets\login\css\bootstrap\mixins\.DS_Store" />
+    <Content Include="Assets\login\images\.DS_Store" />
+    <Content Include="Assets\login\js\.DS_Store" />
+    <Content Include="Views\Shared\UserLayout.cshtml" />
+    <Content Include="Assets\Shop\scss\style.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\bootstrap-grid.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\bootstrap-reboot.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\bootstrap.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_alert.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_badge.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_breadcrumb.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_button-group.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_buttons.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_card.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_carousel.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_close.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_code.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_custom-forms.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_dropdown.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_forms.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_functions.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_grid.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_images.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_input-group.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_jumbotron.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_list-group.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_media.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_mixins.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_modal.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_nav.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_navbar.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_pagination.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_popover.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_print.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_progress.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_reboot.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_root.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_spinners.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_tables.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_toasts.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_tooltip.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_transitions.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_type.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_utilities.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\_variables.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\utilities\_align.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\utilities\_background.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\utilities\_borders.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\utilities\_clearfix.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\utilities\_display.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\utilities\_embed.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\utilities\_flex.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\utilities\_float.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\utilities\_interactions.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\utilities\_overflow.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\utilities\_position.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\utilities\_screenreaders.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\utilities\_shadows.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\utilities\_sizing.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\utilities\_spacing.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\utilities\_stretched-link.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\utilities\_text.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\utilities\_visibility.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\vendor\_rfs.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_alert.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_background-variant.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_badge.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_border-radius.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_box-shadow.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_breakpoints.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_buttons.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_caret.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_clearfix.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_deprecate.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_float.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_forms.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_gradients.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_grid-framework.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_grid.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_hover.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_image.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_list-group.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_lists.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_nav-divider.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_pagination.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_reset-text.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_resize.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_screen-reader.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_size.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_table-row.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_text-emphasis.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_text-hide.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_text-truncate.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_transition.scss" />
+    <Content Include="Assets\Shop\scss\bootstrap\scss\mixins\_visibility.scss" />
+    <Content Include="Assets\Shop\lib\owlcarousel\LICENSE" />
+    <Content Include="Assets\Shop\mail\contact.php" />
+    <Content Include="Views\Home\Detail.cshtml" />
+    <Content Include="Views\Home\Cart.cshtml" />
+    <Content Include="Views\Home\CheckOut.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Shop.cshtml" />
+    <Content Include="Views\Home\Ewallet.cshtml" />
+    <Content Include="Views\Home\EditProfile.cshtml" />
+    <Content Include="Views\Home\FavoritedProduct.cshtml" />
+    <Content Include="Views\Home\MyOrders.cshtml" />
+    <Content Include="Views\Home\PageNotFound.cshtml" />
+    <Content Include="Views\Shop\MyStore.cshtml" />
+    <Content Include="Views\Shop\ProductInfo.cshtml" />
+    <Content Include="Views\Shop\MyProfile.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\ManageWallet.cshtml" />
+    <Content Include="Views\Admin\Transaction.cshtml" />
+    <Content Include="Views\Admin\ManageStore.cshtml" />
+    <Content Include="Views\Admin\UserAccounts.cshtml" />
+    <Content Include="Views\Home\Verify.cshtml" />
+    <Content Include="Views\Home\SignUp.cshtml" />
+    <Content Include="Views\Home\ForgotPass.cshtml" />
+    <Content Include="Views\Home\ShopList.cshtml" />
+    <Content Include="Views\Home\MyProfile.cshtml" />
+    <Content Include="Views\Shop\ChangeLogo.cshtml" />
+    <EntityDeploy Include="Database\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Database\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
+    <Folder Include="Views\IBase\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50649</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:3000/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

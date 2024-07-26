@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UCGrabModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="date_created" Type="DateTime" Precision="3" />
+    <Property Name="user_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Product_Category" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="ContactUs">
+    <Key>
+      <PropertyRef Name="contact_id" />
+    </Key>
+    <Property Name="contact_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="subject" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="image_id" Type="Int32" />
+    <Property Name="image_file" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User_Information" Relationship="Self.FK_Image_User_Accounts" FromRole="Image" ToRole="User_Information" />
+  </EntityType>
+  <EntityType Name="Image_Product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_id" Type="Int32" />
+    <Property Name="image_file" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Product_Image_Product" FromRole="Image_Product" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Image_Store">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="store_id" Type="Int32" />
+    <Property Name="image_file" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Store" Relationship="Self.FK_Image_Store_Image_Store" FromRole="Image_Store" ToRole="Store" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="order_status" Type="Int32" />
+    <Property Name="store_id" Type="Int32" />
+    <Property Name="order_date" Type="DateTime" Precision="3" />
+    <Property Name="shipped_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Order_Detail" Relationship="Self.FK_Order_Detail_Order" FromRole="Order" ToRole="Order_Detail" />
+    <NavigationProperty Name="Store" Relationship="Self.FK_Order_Store" FromRole="Order" ToRole="Store" />
+  </EntityType>
+  <EntityType Name="Order_Detail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="order_id" Type="Int32" Nullable="false" />
+    <Property Name="product_id" Type="Int32" Nullable="false" />
+    <Property Name="quatity" Type="Int32" Nullable="false" />
+    <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Order_Detail_Order" FromRole="Order_Detail" ToRole="Order" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Order_Detail_Product" FromRole="Order_Detail" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="product_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="product_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="category_id" Type="Int32" Nullable="false" />
+    <Property Name="size" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="date_created" Type="DateTime" Precision="0" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="Image_Product" Relationship="Self.FK_Product_Image_Product" FromRole="Product" ToRole="Image_Product" />
+    <NavigationProperty Name="Order_Detail" Relationship="Self.FK_Order_Detail_Product" FromRole="Product" ToRole="Order_Detail" />
+    <NavigationProperty Name="Stock" Relationship="Self.FK_Stock_Product" FromRole="Product" ToRole="Stock" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="stock_id" />
+    </Key>
+    <Property Name="stock_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_id" Type="Int32" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Stock_Product" FromRole="Stock" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Store">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="store_id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="user_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="store_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="store_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="store_address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="operating_hours" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Int32" />
+    <NavigationProperty Name="Image_Store" Relationship="Self.FK_Image_Store_Image_Store" FromRole="Store" ToRole="Image_Store" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Order_Store" FromRole="Store" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User_Accounts">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="role_id" Type="Int32" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="verify_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="date_created" Type="DateTime" Precision="3" />
+    <Property Name="date_modified" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="User_Accounts1" Relationship="Self.FK_User_Accounts_User_Accounts" FromRole="User_Accounts" ToRole="User_Accounts1" />
+    <NavigationProperty Name="User_Accounts2" Relationship="Self.FK_User_Accounts_User_Accounts" FromRole="User_Accounts1" ToRole="User_Accounts" />
+    <NavigationProperty Name="User_Role" Relationship="Self.FK_User_Accounts_User_Role" FromRole="User_Accounts" ToRole="User_Role" />
+  </EntityType>
+  <EntityType Name="User_Information">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="last_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="first_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="store_id" Type="Int32" />
+    <NavigationProperty Name="Image" Relationship="Self.FK_Image_User_Accounts" FromRole="User_Information" ToRole="Image" />
+  </EntityType>
+  <EntityType Name="User_Role">
+    <Key>
+      <PropertyRef Name="role_id" />
+    </Key>
+    <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rolename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User_Accounts" Relationship="Self.FK_User_Accounts_User_Role" FromRole="User_Role" ToRole="User_Accounts" />
+    <NavigationProperty Name="User_Role1" Relationship="Self.FK_User_Role_User_Role" FromRole="User_Role" ToRole="User_Role1" />
+    <NavigationProperty Name="User_Role2" Relationship="Self.FK_User_Role_User_Role" FromRole="User_Role1" ToRole="User_Role" />
+    <NavigationProperty Name="User_Role11" Relationship="Self.FK_User_Role_User_Role1" FromRole="User_Role" ToRole="User_Role1" />
+    <NavigationProperty Name="User_Role3" Relationship="Self.FK_User_Role_User_Role1" FromRole="User_Role1" ToRole="User_Role" />
+  </EntityType>
+  <EntityType Name="vw_Role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="rolename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Image_User_Accounts">
+    <End Role="User_Information" Type="Self.User_Information" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Image" Type="Self.Image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Information">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Image">
+        <PropertyRef Name="image_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Image_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Image_Product" Type="Self.Image_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Image_Product">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Image_Store_Image_Store">
+    <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+    <End Role="Image_Store" Type="Self.Image_Store" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Image_Store">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Detail_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="order_id" />
+      </Principal>
+      <Dependent Role="Order_Detail">
+        <PropertyRef Name="order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Store">
+    <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Detail_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Order_Detail">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Accounts_User_Accounts">
+    <End Role="User_Accounts" Type="Self.User_Accounts" Multiplicity="1" />
+    <End Role="User_Accounts1" Type="Self.User_Accounts" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User_Accounts">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User_Accounts1">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Accounts_User_Role">
+    <End Role="User_Role" Type="Self.User_Role" Multiplicity="0..1" />
+    <End Role="User_Accounts" Type="Self.User_Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Role">
+        <PropertyRef Name="role_id" />
+      </Principal>
+      <Dependent Role="User_Accounts">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role_User_Role">
+    <End Role="User_Role" Type="Self.User_Role" Multiplicity="1" />
+    <End Role="User_Role1" Type="Self.User_Role" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User_Role">
+        <PropertyRef Name="role_id" />
+      </Principal>
+      <Dependent Role="User_Role1">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role_User_Role1">
+    <End Role="User_Role" Type="Self.User_Role" Multiplicity="1" />
+    <End Role="User_Role1" Type="Self.User_Role" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User_Role">
+        <PropertyRef Name="role_id" />
+      </Principal>
+      <Dependent Role="User_Role1">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="UCGrabEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Category" EntityType="Self.Category" />
+    <EntitySet Name="ContactUs" EntityType="Self.ContactUs" />
+    <EntitySet Name="Image" EntityType="Self.Image" />
+    <EntitySet Name="Image_Product" EntityType="Self.Image_Product" />
+    <EntitySet Name="Image_Store" EntityType="Self.Image_Store" />
+    <EntitySet Name="Order" EntityType="Self.Order" />
+    <EntitySet Name="Order_Detail" EntityType="Self.Order_Detail" />
+    <EntitySet Name="Product" EntityType="Self.Product" />
+    <EntitySet Name="Stock" EntityType="Self.Stock" />
+    <EntitySet Name="Store" EntityType="Self.Store" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="User_Accounts" EntityType="Self.User_Accounts" />
+    <EntitySet Name="User_Information" EntityType="Self.User_Information" />
+    <EntitySet Name="User_Role" EntityType="Self.User_Role" />
+    <EntitySet Name="vw_Role" EntityType="Self.vw_Role" />
+    <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Image_User_Accounts" Association="Self.FK_Image_User_Accounts">
+      <End Role="User_Information" EntitySet="User_Information" />
+      <End Role="Image" EntitySet="Image" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Image_Product" Association="Self.FK_Product_Image_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Image_Product" EntitySet="Image_Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Image_Store_Image_Store" Association="Self.FK_Image_Store_Image_Store">
+      <End Role="Store" EntitySet="Store" />
+      <End Role="Image_Store" EntitySet="Image_Store" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Detail_Order" Association="Self.FK_Order_Detail_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="Order_Detail" EntitySet="Order_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Store" Association="Self.FK_Order_Store">
+      <End Role="Store" EntitySet="Store" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Detail_Product" Association="Self.FK_Order_Detail_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Order_Detail" EntitySet="Order_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Product" Association="Self.FK_Stock_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Accounts_User_Accounts" Association="Self.FK_User_Accounts_User_Accounts">
+      <End Role="User_Accounts" EntitySet="User_Accounts" />
+      <End Role="User_Accounts1" EntitySet="User_Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Accounts_User_Role" Association="Self.FK_User_Accounts_User_Role">
+      <End Role="User_Role" EntitySet="User_Role" />
+      <End Role="User_Accounts" EntitySet="User_Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role_User_Role" Association="Self.FK_User_Role_User_Role">
+      <End Role="User_Role" EntitySet="User_Role" />
+      <End Role="User_Role1" EntitySet="User_Role" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role_User_Role1" Association="Self.FK_User_Role_User_Role1">
+      <End Role="User_Role" EntitySet="User_Role" />
+      <End Role="User_Role1" EntitySet="User_Role" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getCartCountByUserId" ReturnType="Collection(Int32)">
+      <Parameter Name="user_id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+</Schema>
